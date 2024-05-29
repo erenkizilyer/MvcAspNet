@@ -1,0 +1,39 @@
+﻿@using EntityLayer.Concrete
+@model List<Content>
+@{
+    ViewBag.Title = "GetAllContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("GetAllContent", "Content", FormMethod.Post))
+{
+    <p >
+        Aranacak Kelimeyi Girin: @Html.TextBox("p")
+        <input class="btn-success" type="submit" value="Ara" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th style="color:red"> Yazılar </th>
+        <th style="color:red"> Yazılar </th>
+
+        <th style="color:red"> Yazar </th>
+        <th style="color:red"> Tarih </th>
+
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> <p>@item.Heading.HeadingName</p></td>
+            <td> <p>@item.ContentValue</p></td>
+            <td> <p>@item.Writer.WriterName @item.Writer.WriterSurName</p></td>
+            <td> <p>@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</p></td>
+
+        </tr>
+
+
+    }
+</table>
